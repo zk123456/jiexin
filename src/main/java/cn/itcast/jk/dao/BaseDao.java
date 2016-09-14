@@ -5,63 +5,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 
- * @ClassName: BaseDao 
- * @Description: »ù´¡Ààdao
- * @author zhangkui
- * @date 2016Äê7ÔÂ11ÈÕ ÏÂÎç2:01:57
- * @param <T>
+ * @Description: æ³›å‹ç±»ï¼ŒåŸºç¡€çš„DAOæ¥å£
+ * @Author:	nutony
+ * @Company:	http://java.itcast.cn
+ * @CreateDate:	2014-2-25
  */
 public interface BaseDao<T> {
-
-	/**
-	 * ²éÑ¯
-	* @Title: find 
-	* @param params
-	* @return  ²ÎÊıËµÃ÷ 
-	* @return List<T>    ·µ»ØÀàĞÍ 
-	* @throws
-	 */
-	public List<T> find(@SuppressWarnings("rawtypes") Map params);
-	/**
-	 * ¸ù¾İÖ÷¼ü²éÑ¯
-	* @Title: get 
-	* @param pk
-	* @return  ²ÎÊıËµÃ÷ 
-	* @return T    ·µ»ØÀàĞÍ 
-	* @throws
-	 */
-	public T get(Serializable pk);
-	/**
-	 * add
-	* @Title: insert 
-	* @param entity  ²ÎÊıËµÃ÷ 
-	* @return void    ·µ»ØÀàĞÍ 
-	* @throws
-	 */
-	public void insert(T entity);
-	/**
-	 * update
-	* @Title: update 
-	* @param entity  ²ÎÊıËµÃ÷ 
-	* @return void    ·µ»ØÀàĞÍ 
-	* @throws
-	 */
-	public void update(T entity);
-	/**
-	 * ¸ù¾İÖ÷¼üÉ¾³ı
-	* @Title: deleteById 
-	* @param pk  ²ÎÊıËµÃ÷ 
-	* @return void    ·µ»ØÀàĞÍ 
-	* @throws
-	 */
-	public void deleteById(Serializable pk);
-	/**
-	 * ¸ù¾İÖ÷¼üÅúÁ¿É¾³ı
-	* @Title: batchDelete 
-	* @param pks  ²ÎÊıËµÃ÷ 
-	* @return void    ·µ»ØÀàĞÍ 
-	* @throws
-	 */
-	public void batchDelete(Serializable[] pks);
+	public List<T> find(Map paraMap);				//å¸¦æ¡ä»¶æŸ¥è¯¢ï¼Œæ¡ä»¶å¯ä»¥ä¸ºnullï¼Œæ—¢æ²¡æœ‰æ¡ä»¶ï¼›è¿”å›listå¯¹è±¡é›†åˆ
+	public T get(Serializable id);					//åªæŸ¥è¯¢ä¸€ä¸ªï¼Œå¸¸ç”¨äºä¿®æ”¹
+	public void insert(T entity);					//æ’å…¥ï¼Œç”¨å®ä½“ä½œä¸ºå‚æ•°
+	public void update(T entity);					//ä¿®æ”¹ï¼Œç”¨å®ä½“ä½œä¸ºå‚æ•°
+	public void deleteById(Serializable id);		//æŒ‰idåˆ é™¤ï¼Œåˆ é™¤ä¸€æ¡ï¼›æ”¯æŒæ•´æ•°å‹å’Œå­—ç¬¦ä¸²ç±»å‹ID
+	public void delete(Serializable[] ids);			//æ‰¹é‡åˆ é™¤ï¼›æ”¯æŒæ•´æ•°å‹å’Œå­—ç¬¦ä¸²ç±»å‹ID
 }

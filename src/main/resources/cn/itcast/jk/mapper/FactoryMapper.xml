@@ -21,6 +21,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="createDept" column="CREATE_DEPT"/>
 		<result property="createTime" column="CREATE_TIME"/>
 	</resultMap>
+	<!-- <select id="selectFactory" parameterType="String" resultType="Factory">
+   		select * from Factory where id = #{id}
+  	</select>
+  	<insert id="insert" parameterType="factoryRM">
+  	    insert into Factory () 
+  	    values ()
+  	</insert> -->
 	
-	<select id=""></select>
 </mapper>

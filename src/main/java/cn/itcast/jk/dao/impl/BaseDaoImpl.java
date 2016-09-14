@@ -1,4 +1,4 @@
-package cn.itcast.jk.dao.imp;
+package cn.itcast.jk.dao.impl;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,29 +10,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.itcast.jk.dao.BaseDao;
 
-public abstract class BaseDaoImp<T> extends SqlSessionDaoSupport implements BaseDao<T>{
-
+public abstract class BaseDaoImpl<T> extends SqlSessionDaoSupport implements BaseDao<T>{
 	@Autowired
-	//mybatis-spring 1.0Œﬁ–Ë¥À∑Ω∑®£ªmybatis-spring1.2±ÿ–Î◊¢»Î°£
+	//mybatis-spring 1.0Êó†ÈúÄÊ≠§ÊñπÊ≥ïÔºõmybatis-spring1.2ÂøÖÈ°ªÊ≥®ÂÖ•„ÄÇ
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory){
 		super.setSqlSessionFactory(sqlSessionFactory);
 	}
 	
-	private String ns;		//√¸√˚ø’º‰
+	private String ns;		//ÂëΩÂêçÁ©∫Èó¥
 	public String getNs() {
 		return ns;
 	}
 	public void setNs(String ns) {
 		this.ns = ns;
 	}
-	
-	public List<T> find(@SuppressWarnings("rawtypes") Map params) {
-		List<T> list = this.getSqlSession().selectList(ns + ".find", params);
-		return list;
-	}
 
-	public T get(Serializable pk) {
-		return this.getSqlSession().selectOne(ns + ".get", pk);
+	public List<T> find(Map map) {
+		List<T> oList = this.getSqlSession().selectList(ns + ".find", map);
+		return oList;
+	}
+	public T get(Serializable id) {
+		return this.getSqlSession().selectOne(ns + ".get", id);
 	}
 
 	public void insert(T entity) {
@@ -43,12 +41,11 @@ public abstract class BaseDaoImp<T> extends SqlSessionDaoSupport implements Base
 		this.getSqlSession().update(ns + ".update", entity);
 	}
 
-	public void deleteById(Serializable pk) {
-		this.getSqlSession().delete(ns + ".deleteById", pk);
+	public void deleteById(Serializable id) {
+		this.getSqlSession().delete(ns + ".deleteById", id);
 	}
 
-	public void batchDelete(Serializable[] pks) {
-		this.getSqlSession().delete(ns + ".deletes", pks);
+	public void delete(Serializable[] ids) {
+		this.getSqlSession().delete(ns + ".delete", ids);
 	}
-
 }
