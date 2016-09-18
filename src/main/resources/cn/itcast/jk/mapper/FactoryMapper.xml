@@ -23,11 +23,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	<!-- <select id="selectFactory" parameterType="String" resultType="Factory">
    		select * from Factory where id = #{id}
-  	</select>
-  	<insert id="insert" parameterType="factoryRM">
-  	    insert into Factory () 
-  	    values ()
-  	</insert> -->
+  	</select> -->
+  	<!-- 新增 -->
+	<insert id="insert" parameterType="cn.itcast.jk.domain.Factory">
+		insert into factory_c
+		(FACTORY_ID,FULL_NAME,FACTORY_NAME,CONTACTS,PHONE,MOBILE,FAX,NOTE,INSPECTOR,ORDER_NO,
+		STATE,CREATE_BY,CREATE_DEPT,CREATE_TIME)
+		values
+		(#{id,jdbcType=VARCHAR},#{fullName,jdbcType=VARCHAR},#{factoryName,jdbcType=VARCHAR},
+		#{contacts,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{mobile,jdbcType=VARCHAR},
+		#{fax,jdbcType=VARCHAR},#{note,jdbcType=VARCHAR},#{inspector,jdbcType=VARCHAR},
+		#{orderNo,jdbcType=INTEGER},#{state,jdbcType=VARCHAR},#{createBy,jdbcType=VARCHAR},
+		#{createDept,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP})
+	</insert>
   	<select id="find" parameterType="map" resultMap="factoryRM">
 		select * from factory_c
 		where 1=1

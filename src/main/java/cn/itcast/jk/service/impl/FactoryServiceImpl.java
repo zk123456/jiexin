@@ -16,12 +16,14 @@ public class FactoryServiceImpl implements FactoryService {
 
 	@Autowired
 	FactoryDao factoryDao;
-	
+
 	public List<Factory> find(Map paraMap) {
 		return factoryDao.find(paraMap);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see cn.itcast.jk.service.FactoryService#get(java.io.Serializable)
 	 */
 	public Factory get(Serializable id) {
@@ -29,36 +31,39 @@ public class FactoryServiceImpl implements FactoryService {
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see cn.itcast.jk.service.FactoryService#insert(cn.itcast.jk.domain.Factory)
-	 */
 	public void insert(Factory entity) {
-		// TODO Auto-generated method stub
-		
+		factoryDao.insert(entity);
 	}
 
-	/* (non-Javadoc)
-	 * @see cn.itcast.jk.service.FactoryService#update(cn.itcast.jk.domain.Factory)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * cn.itcast.jk.service.FactoryService#update(cn.itcast.jk.domain.Factory)
 	 */
 	public void update(Factory entity) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see cn.itcast.jk.service.FactoryService#deleteById(java.io.Serializable)
 	 */
 	public void deleteById(Serializable id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see cn.itcast.jk.service.FactoryService#delete(java.io.Serializable[])
 	 */
 	public void delete(Serializable[] ids) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
