@@ -6,11 +6,6 @@
 </head>
 <body>
 <form method="post">
-
-<hr>
-	<font color="blue"><b>隐藏区域</b></font>
-<hr>
-
 	<input type="hidden" name="id" value="${obj.id}"/>
 
 
@@ -32,23 +27,43 @@
     <div class="textbox-header">
     <div class="textbox-inner-header">
     <div class="textbox-title">
-		修改XXX信息
+		修改生产厂家信息
     </div> 
     </div>
     </div>
 <div>
  
-<hr>
-	<font color="blue"><b>内容区域，表格布局</b></font>
-<hr>
- 
     <div>
 		<table class="commonTable" cellspacing="1">
 	        <tr>
+	            <td class="columnTitle">排序号：</td>
+	            <td class="tableContent"><input type="text" name="orderNo" value="${obj.orderNo}"/></td>
+	            <td class="columnTitle">验货员：</td>
+	            <td class="tableContent"><input type="text" name="inspector" value="${obj.inspector}"/></td>
+	        </tr>		
+	        <tr>
 	            <td class="columnTitle_mustbe">厂家名称：</td>
-	            <td class="columnTitle_mustbe">联系人：</td>
-	            <td class="tableContent"><input type="text" name="contractor" value="${obj.contractor}"/></td>
+	            <td class="tableContent"><input type="text" name="fullName" value="${obj.fullName}"/></td>
+	            <td class="columnTitle_mustbe">简称：</td>
+	            <td class="tableContent"><input type="text" name="factoryName" value="${obj.factoryName}"/></td>
 	        </tr>
+	        <tr>
+	            <td class="columnTitle_mustbe">联系人：</td>
+	            <td class="tableContent"><input type="text" name="contacts" value="${obj.contacts}"/></td>
+	            <td class="columnTitle_mustbe">电话：</td>
+	            <td class="tableContent"><input type="text" name="phone" value="${obj.phone}"/></td>
+	        </tr>
+	        <tr>
+	            <td class="columnTitle_mustbe">手机：</td>
+	            <td class="tableContent"><input type="text" name="mobile" value="${obj.mobile}"/></td>
+	            <td class="columnTitle">传真：</td>
+	            <td class="tableContent"><input type="text" name="fax" value="${obj.fax}"/></td>
+	        </tr>
+	        <tr>
+	            <td class="columnTitle">备注：</td>
+	            <td class="tableContent"><textarea name="note" style="width:100%;height:120px;">${obj.note}</textarea></td>
+	        </tr>
+
 		</table>
 	</div>
 </div>

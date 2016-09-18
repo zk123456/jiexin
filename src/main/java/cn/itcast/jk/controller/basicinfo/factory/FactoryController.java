@@ -27,4 +27,19 @@ public class FactoryController {
 		
 		return "/basicinfo/factory/jFactoryList.jsp";
 	}
+	
+	public String toCreateFactory() {
+		return "/basicinfo/factory/jFactoryCreate.jsp";
+	}
+	
+	@RequestMapping("/basicinfo/factory/list.action")
+	public String insert(Model model){
+		Map<String, Object> paraMap = new HashMap<String, Object>();
+		paraMap.put("state", "1");
+		
+		List<Factory> dataList = factoryService.find(paraMap);
+		model.addAttribute("dataList", dataList);
+		
+		return "/basicinfo/factory/jFactoryList.jsp";
+	}
 }
