@@ -1,3 +1,5 @@
+<%@page import="java.io.Console"%>
+<%@page import="org.springframework.web.servlet.mvc.condition.ConsumesRequestCondition"%>
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ include file="../../baselist.jsp"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -43,11 +45,11 @@
 	</thead>
 	<tbody class="tableBody" >
 	
-	<c:forEach items="${dataList}" var="o" varStatus="status">
+	<c:forEach items="${dataList}" var="fac" varStatus="status">
 	<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" >
-		<td><input type="checkbox" name="id" value="${o.id}"/></td>
+		<td><input type="checkbox" name="id" value="${fac.id}"/></td>
 		<td>${status.index+1}</td>
-		<td><a href="toview.action?id=${o.id}">${o.fullName}</a></td>
+		 <td><a href="toview.action?id=${fac.id}">${fac.fullName}</a></td>
 	</tr>
 	</c:forEach>
 	

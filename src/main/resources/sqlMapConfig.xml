@@ -2,5 +2,16 @@
 <!DOCTYPE configuration
 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
-<configuration></configuration>	
+<configuration>
+   <properties>  
+    <property name="dialect" value="mysql" />  
+   </properties>
+   <settings>
+       <setting name="logImpl" value="LOG4J"/>
+   </settings>
+   <!--  <typeAliases>
+        <typeAlias alias="factoryRM" type="cn.itcast.jk.domain.Factory"/>
+        <package name="cn.itcast.jk.domain"/>
+    </typeAliases> -->
+</configuration>	
 	
