@@ -25,6 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		select * from Factory where id = #{id}
   	</select> -->
   	<!-- 新增 -->
+  	<!-- MyBatis 插入空值时，需要指定JdbcType  -->
 	<insert id="insert" parameterType="cn.itcast.jk.domain.Factory">
 		insert into factory_c
 		(FACTORY_ID,FULL_NAME,FACTORY_NAME,CONTACTS,PHONE,MOBILE,FAX,NOTE,INSPECTOR,ORDER_NO,
@@ -32,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values
 		(#{id,jdbcType=VARCHAR},#{fullName,jdbcType=VARCHAR},#{factoryName,jdbcType=VARCHAR},
 		#{contacts,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{mobile,jdbcType=VARCHAR},
-		#{fax,jdbcType=VARCHAR},#{note,jdbcType=VARCHAR},#{inspector,jdbcType=VARCHAR},
+		#{fax,jdbcType=VARCHAR},#{note},#{inspector,jdbcType=VARCHAR},
 		#{orderNo,jdbcType=INTEGER},#{state,jdbcType=VARCHAR},#{createBy,jdbcType=VARCHAR},
 		#{createDept,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP})
 	</insert>
@@ -40,6 +41,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from factory_c
 		where 1=1
 		<if test="state != null">and state = #{state}</if>
+	</select>
+	
+  	<!-- 修改 -->
+	<update id="update" parameterType="cn.itcast.jk.domain.Factory">
+		update factory_c
+		<set>
+			<if test="fullName != null">FULL_NAME=#{fullName},</if>
+			<if test="factoryName != null">FACTORY_NAME=#{factoryName},</if>
+			<if test="contacts != null">CONTACTS=#{contacts},</if>
+			<if test="phone != null">PHONE=#{phone},</if>
+			<if test="mobile != null">MOBILE=#{mobile},</if>
+			<if test="fax != null">FAX=#{fax},</if>
+			<if test="note != null">NOTE=#{note},</if>
+			<if test="inspector != null">INSPECTOR=#{inspector},</if>
+			<if test="orderNo != null">ORDER_NO=#{orderNo},</if>
+			<if test="state != null">STATE=#{state},</if>
+			
+			<if test="createBy != null">CREATE_BY=#{createBy},</if>
+			<if test="createDept != null">CREATE_DEPT=#{createDept},</if>
+			<if test="createTime != null">CREATE_TIME=#{createTime},</if>
+		</set>
+		where FACTORY_ID=#{id}
+	</update>
+	
+	<!-- 删除一条byId -->
+	<delete id="deleteById" parameterType="string">
+		delete from factory_c
+		where FACTORY_ID=#{pid}
+	</delete>
+	
+		<!-- 查询一条 -->
+	<select id="get" parameterType="string" resultType="cn.itcast.jk.domain.Factory">
+		select * from factory_c 
+		where FACTORY_ID=#{id}
 	</select>
 	
 </mapper>

@@ -49,7 +49,7 @@
 <ul>
 <li id="view"><a href="#" onclick="_Submit('toview.action',null,'查看');this.blur();">查看</a></li>
 <li id="new"><a href="#" onclick="formSubmit('tocreate.action','_self');this.blur();">新增</a></li>
-<li id="update"><a href="#" onclick="_Submit('toupdate.action',null,'修改');this.blur();">修改</a></li>
+<li id="view"><a href="#" onclick="_Submit('toupdate.action',null,'修改');this.blur();">修改</a></li>
 <li id="delete"><a href="#" onclick="_Submit('deleteById.action',null,'删除1');this.blur();">删除1</a></li>
 <li id="delete"><a href="#" onclick="formSubmit('delete.action','_self');this.blur();">删除</a></li>
 <li id="new"><a href="#" onclick="formSubmit('start.action','_self');this.blur();">启用</a></li>

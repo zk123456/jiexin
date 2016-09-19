@@ -36,13 +36,36 @@ public class FactoryController {
 
 	@RequestMapping("/basicinfo/factory/insert.action")
 	public String insert(Factory factory) {
-		// 加工数据
-		factory.setId(UUID.randomUUID().toString()); // 产生一个UUID
+		factory.setId(UUID.randomUUID().toString()); 
 		factory.setCreateTime(new java.util.Date());
-		factory.setState("1"); // 1启用0停用
+		factory.setState("1");
 
 		factoryService.insert(factory);
 
 		return "redirect:/basicinfo/factory/list.action";
 	}
+	
+	@RequestMapping("/basicinfo/factory/toupdate.action")
+	public String toupdate(String id, Model model){
+		Factory fac = factoryService.get(id);
+		if(null != fac) {
+			fac.setId(id);
+		}
+		model.addAttribute("obj", fac);
+		
+		return "/basicinfo/factory/jFactoryUpdate.jsp";
+	}
+	
+	@RequestMapping("/basicinfo/factory/update.action")
+	public String update(Factory factory) {
+		factoryService.update(factory);
+		return "redirect:/basicinfo/factory/list.action";
+	}
+	
+	@RequestMapping("/basicinfo/factory/deleteById.action")
+	public String deleteById(String id) {
+		factoryService.deleteById(id);
+		return "redirect:/basicinfo/factory/list.action";
+	}
+	
 }

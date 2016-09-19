@@ -27,8 +27,7 @@ public class FactoryServiceImpl implements FactoryService {
 	 * @see cn.itcast.jk.service.FactoryService#get(java.io.Serializable)
 	 */
 	public Factory get(Serializable id) {
-		// TODO Auto-generated method stub
-		return null;
+		return factoryDao.get(id);
 	}
 
 	public void insert(Factory entity) {
@@ -42,8 +41,7 @@ public class FactoryServiceImpl implements FactoryService {
 	 * cn.itcast.jk.service.FactoryService#update(cn.itcast.jk.domain.Factory)
 	 */
 	public void update(Factory entity) {
-		// TODO Auto-generated method stub
-
+		factoryDao.update(entity);
 	}
 
 	/*
@@ -52,8 +50,7 @@ public class FactoryServiceImpl implements FactoryService {
 	 * @see cn.itcast.jk.service.FactoryService#deleteById(java.io.Serializable)
 	 */
 	public void deleteById(Serializable id) {
-		// TODO Auto-generated method stub
-
+		factoryDao.deleteById(id);
 	}
 
 	/*
