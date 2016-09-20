@@ -21,11 +21,6 @@ public class FactoryServiceImpl implements FactoryService {
 		return factoryDao.find(paraMap);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see cn.itcast.jk.service.FactoryService#get(java.io.Serializable)
-	 */
 	public Factory get(Serializable id) {
 		return factoryDao.get(id);
 	}
@@ -34,33 +29,21 @@ public class FactoryServiceImpl implements FactoryService {
 		factoryDao.insert(entity);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * cn.itcast.jk.service.FactoryService#update(cn.itcast.jk.domain.Factory)
-	 */
 	public void update(Factory entity) {
 		factoryDao.update(entity);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see cn.itcast.jk.service.FactoryService#deleteById(java.io.Serializable)
-	 */
 	public void deleteById(Serializable id) {
 		factoryDao.deleteById(id);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see cn.itcast.jk.service.FactoryService#delete(java.io.Serializable[])
-	 */
 	public void delete(Serializable[] ids) {
-		// TODO Auto-generated method stub
+		factoryDao.delete(ids);
+	}
 
+	@Override
+	public void updateState(Map paraMap) {
+		factoryDao.updateState(paraMap);
 	}
 
 }

@@ -19,4 +19,5 @@ public interface FactoryService {
 	public void update(Factory entity);
 	public void deleteById(Serializable id);
 	public void delete(Serializable[] ids);
+	public void updateState(Map paraMap);
 }

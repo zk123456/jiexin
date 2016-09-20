@@ -4,6 +4,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.itcast.jk.mapper.FactoryMapper">
+    <!-- <typeAlias alias="Blog" type="com.tiantian.mybatis.model.Blog"/>别名 -->
+    <!-- 
+    	resultType:从这条语句中返回的期望类型的类的完全限定名或别名。注意集 合情形,那应该是集合可以包含的类型,而不能是集合本身
+    	resultMap:命名引用外部的 resultMap
+    	
+    	resultType和resultMap返回的数据不一致
+    	
+    	使用resultType也就意外这属性名必须和列名一致
+    	而returnMap则不必须这个限制条件
+     -->
 	<resultMap type="cn.itcast.jk.domain.Factory" id="factoryRM">
 		<id property="id" column="FACTORY_ID"/>
 		<result property="fullName" column="FULL_NAME"/>
@@ -21,29 +31,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="createDept" column="CREATE_DEPT"/>
 		<result property="createTime" column="CREATE_TIME"/>
 	</resultMap>
-	<!-- <select id="selectFactory" parameterType="String" resultType="Factory">
-   		select * from Factory where id = #{id}
-  	</select> -->
-  	<!-- 新增 -->
-  	<!-- MyBatis 插入空值时，需要指定JdbcType  -->
-	<insert id="insert" parameterType="cn.itcast.jk.domain.Factory">
-		insert into factory_c
-		(FACTORY_ID,FULL_NAME,FACTORY_NAME,CONTACTS,PHONE,MOBILE,FAX,NOTE,INSPECTOR,ORDER_NO,
-		STATE,CREATE_BY,CREATE_DEPT,CREATE_TIME)
-		values
-		(#{id,jdbcType=VARCHAR},#{fullName,jdbcType=VARCHAR},#{factoryName,jdbcType=VARCHAR},
-		#{contacts,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{mobile,jdbcType=VARCHAR},
-		#{fax,jdbcType=VARCHAR},#{note},#{inspector,jdbcType=VARCHAR},
-		#{orderNo,jdbcType=INTEGER},#{state,jdbcType=VARCHAR},#{createBy,jdbcType=VARCHAR},
-		#{createDept,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP})
-	</insert>
-  	<select id="find" parameterType="map" resultMap="factoryRM">
+	
+	<!-- 带条件查询 -->
+	<select id="find" parameterType="map" resultMap="factoryRM">
 		select * from factory_c
 		where 1=1
 		<if test="state != null">and state = #{state}</if>
+		order by order_no		
 	</select>
 	
-  	<!-- 修改 -->
+	<!-- 查询一条 -->
+	<select id="get" parameterType="string" resultMap="factoryRM">
+		select * from factory_c
+		where factory_id=#{pid}
+	</select>
+	
+	<!-- 新增 -->
+	<insert id="insert" parameterType="cn.itcast.jk.domain.Factory">
+		insert into factory_c
+		(FACTORY_ID,FULL_NAME,FACTORY_NAME,CONTACTS,PHONE,MOBILE,FAX,NOTE,INSPECTOR,ORDER_NO,STATE,CREATE_BY,CREATE_DEPT,CREATE_TIME)
+		values
+		(#{id,jdbcType=VARCHAR},#{fullName,jdbcType=VARCHAR},
+		#{factoryName,jdbcType=VARCHAR},#{contacts,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR},#{mobile,jdbcType=VARCHAR},
+		#{fax,jdbcType=VARCHAR},#{note,jdbcType=VARCHAR},
+		#{inspector,jdbcType=VARCHAR},#{orderNo,jdbcType=INTEGER},
+		#{state,jdbcType=VARCHAR},#{createBy,jdbcType=VARCHAR},
+		#{createDept,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	
+	<!-- 修改 -->
 	<update id="update" parameterType="cn.itcast.jk.domain.Factory">
 		update factory_c
 		<set>
@@ -68,13 +85,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 删除一条byId -->
 	<delete id="deleteById" parameterType="string">
 		delete from factory_c
-		where FACTORY_ID=#{pid}
+		where factory_id=#{pid}
 	</delete>
 	
-		<!-- 查询一条 -->
-	<select id="get" parameterType="string" resultType="cn.itcast.jk.domain.Factory">
-		select * from factory_c 
-		where FACTORY_ID=#{id}
-	</select>
+	<!-- 批量删除 where factory_id in ('1','2') -->
+	<!-- 
+	<foreach item="item" index="index" collection="list"
+      open="(" separator="," close=")">
+        #{item}
+  </foreach>
+	你可以传递一个 List 实例或者数组作为参数对象传给 MyBatis。
+	当你这么做的时 候,MyBatis 会自动将它包装在一个 Map 中,用名称在作为键。
+	List 实例将会以“list” 作为键,而数组实例将会以“array”作为键
+	 -->
+	<delete id="delete" parameterType="string">
+		delete from factory_c
+		where factory_id in
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</delete>
 	
+	<!-- 批量的状态修改 1）修改状态2）修改多条 -->
+	<update id="updateState" parameterType="map">
+		update factory_c set state = #{state}
+		where factory_id in 
+		(
+			<foreach collection="ids" item="id" separator=",">
+				#{id}
+			</foreach>
+		)
+	</update>
 </mapper>
