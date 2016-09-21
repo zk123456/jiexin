@@ -174,7 +174,7 @@
 		});
 		
 		function logout(){
-			return formSubmit("${ctx}/frmain.action", "_top");
+			return formSubmit("${ctx}/home.action", "_top");
 		}
 </script>
 	
@@ -190,7 +190,7 @@
 		<img src="${ctx}/skin/default/images/title/close.gif" border="0" />
 	</div>
 
-	<a id="memos"  style="cursor:pointer;" href="${ctx}/home/welcome.do" target="_top" title="点击切换到系统首页"><div id="memo" class="memo" title="点击切换到系统首页"></div></a>
+	<a id="memos"  style="cursor:pointer;" href="${ctx}/fmain.action" target="_top" title="点击切换到系统首页"><div id="memo" class="memo" title="点击切换到系统首页"></div></a>
 	<a id="logins" style="cursor:pointer;" onclick="doLoginDiv();" title="点击显示您的登录信息"><div id="small_login" class="small_login" title="点击显示您的登录信息"></div></a>
 	<a id="logout" style="cursor:pointer;" onclick="logout();" target="_top" title="点击退出系统"><div id="small_login_out" class="small_login_out" title="点击退出系统"></div></a>
 

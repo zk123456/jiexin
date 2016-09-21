@@ -50,7 +50,7 @@
 				<ul>
 					
 					<li>
-						<a href="olmsgList.jsp" target="main" id="aa_3" onclick="linkHighlighted(this)">我的留言板</a>
+						<a href="${ctx}/main.action" target="main" id="aa_3" onclick="linkHighlighted(this)">我的留言板</a>
 					</li>
 					
 					

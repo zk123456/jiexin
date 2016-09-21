@@ -9,15 +9,15 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.itcast.jk.dao.BaseDao;
-import cn.itcast.jk.util.Log;
 
 public abstract class BaseDaoImpl<T> extends SqlSessionDaoSupport implements BaseDao<T>{
 	@Autowired
+	//mybatis-spring 1.0无需此方法；mybatis-spring1.2必须注入。
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory){
 		super.setSqlSessionFactory(sqlSessionFactory);
 	}
 	
-	private String ns;	//命名空间
+	private String ns;		//命名空间
 	public String getNs() {
 		return ns;
 	}
@@ -26,7 +26,6 @@ public abstract class BaseDaoImpl<T> extends SqlSessionDaoSupport implements Bas
 	}
 
 	public List<T> find(Map map) {
-		Log.info(this.getClass(), "select factory list", null);
 		List<T> oList = this.getSqlSession().selectList(ns + ".find", map);
 		return oList;
 	}

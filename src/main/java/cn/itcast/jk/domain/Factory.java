@@ -1,8 +1,10 @@
 package cn.itcast.jk.domain;
 
 /**
- * ³§¼Ò
- * @author zhangkui
+ * @Description: æŒä¹…åŒ–ç±»
+ * @Author:	nutony
+ * @Company:	http://java.itcast.cn
+ * @CreateDate:	2014-7-1
  */
 public class Factory {
 	private String id;

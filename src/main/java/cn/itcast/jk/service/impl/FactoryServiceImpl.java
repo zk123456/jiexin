@@ -11,12 +11,18 @@ import cn.itcast.jk.dao.FactoryDao;
 import cn.itcast.jk.domain.Factory;
 import cn.itcast.jk.service.FactoryService;
 
+/**
+ * @Description: 生产厂家业务实现类
+ * @Author:	nutony
+ * @Company:	http://java.itcast.cn
+ * @CreateDate:	2014-7-1
+ */
 @Service
 public class FactoryServiceImpl implements FactoryService {
 
 	@Autowired
 	FactoryDao factoryDao;
-
+	
 	public List<Factory> find(Map paraMap) {
 		return factoryDao.find(paraMap);
 	}
@@ -41,9 +47,8 @@ public class FactoryServiceImpl implements FactoryService {
 		factoryDao.delete(ids);
 	}
 
-	@Override
-	public void updateState(Map paraMap) {
-		factoryDao.updateState(paraMap);
+	public void updateState(Map map) {
+		factoryDao.updateState(map);
 	}
 
 }
